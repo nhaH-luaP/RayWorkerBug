@@ -1,0 +1,19 @@
+# BO params
+num_opt_samples: 50
+num_folds: 3
+num_cpus: 4
+num_gpus: 1
+
+# Points to evaluate
+lr: null
+weight_decay: null
+
+# Else
+output_dir: ./output/
+hydra:
+  run:
+    dir: ${output_dir}
+  job_logging:
+    handlers:
+      file:
+        mode: w
