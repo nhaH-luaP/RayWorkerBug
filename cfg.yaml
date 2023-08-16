@@ -1,14 +1,14 @@
-# BO params
+defaults:
+  - _self_
+
 num_opt_samples: 50
 num_folds: 3
 num_cpus: 4
 num_gpus: 1
 
-# Points to evaluate
-lr: 0.001
-weight_decay: 0.00005
+lr: 0.01
+weight_decay: 0.0005
 
-# Else
 output_dir: ./output/
 hydra:
   run:
@@ -17,3 +17,4 @@ hydra:
     handlers:
       file:
         mode: w
+
