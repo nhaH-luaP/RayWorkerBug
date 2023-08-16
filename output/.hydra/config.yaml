@@ -1,7 +1,0 @@
-num_opt_samples: 50
-num_folds: 3
-num_cpus: 4
-num_gpus: 1
-lr: 0.001
-weight_decay: 5.0e-05
-output_dir: ./output/

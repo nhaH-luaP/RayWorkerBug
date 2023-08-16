@@ -5,9 +5,9 @@
 #SBATCH --output=/mnt/stud/work/phahn/dev/logs/%A_%x_%a.out
 #SBATCH --ntasks=1
 #SBATCH --mem=32GB
-#SBATCH --array=0-26
-date;hostname;pwd
-source activate dal-toolbox
+#SBATCH --array=0-99
+
+source activate rayworkerbug
 cd /mnt/stud/work/phahn/dev/RayWorkerBug/
 
 output_dir=/mnt/stud/work/phahn/dev/output/{$SLURM_ARRAY_TASK_ID}_{$SLURM_JOB_ID}
