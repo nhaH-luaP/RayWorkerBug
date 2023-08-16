@@ -5,8 +5,8 @@ num_cpus: 4
 num_gpus: 1
 
 # Points to evaluate
-lr: null
-weight_decay: null
+lr: 0.001
+weight_decay: 0.00005
 
 # Else
 output_dir: ./output/
