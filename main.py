@@ -23,7 +23,7 @@ def main(args):
     print(OmegaConf.to_yaml(args))
     os.makedirs(args.output_dir, exist_ok=True)
 
-    num_cpus = int(os.environ.get('SLURM_CPUS_PER_TASK', args.num_cpus))
+    num_cpus = int(os.environ.get('SLURM_CPUS_PER_TASK', 8))
     num_gpus = torch.cuda.device_count()
     print('>>> Num CPUS:',num_cpus,' Num GPUS:',num_gpus)
     
@@ -35,24 +35,14 @@ def main(args):
         )
 
     search_space = {"param": tune.uniform(0, .1)}
-    
-    objective = tune.with_resources(train, resources={'cpu': args.num_cpus, 'gpu': args.num_gpus})
-
+    objective = tune.with_resources(train, resources={'cpu': args.cpus_per_trial, 'gpu': args.gpus_per_trial})
     tune_config = tune.TuneConfig(num_samples=args.num_opt_samples, metric="val_metric", mode="min")
     run_config = air.RunConfig(storage_path=args.output_dir)
     tuner = tune.Tuner(objective, param_space=search_space, tune_config=tune_config, run_config=run_config)
     
     results = tuner.fit()
 
-    print('Best Hyperparameters: {}'.format(results.get_best_result(metric='val_metric', mode='min').config))
-    
-    history = {
-        'placeholder':'placeholder' 
-    }
-    with open(os.path.join(args.output_dir, 'results.json'), 'w') as f:
-        json.dump(history, f)
-
-    print('>>> Saved Results')
+    print('>>>>> FINISHED')
 
 
 if __name__ == '__main__':
