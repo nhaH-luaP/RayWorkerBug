@@ -38,7 +38,7 @@ def main(args):
     
     objective = tune.with_resources(train, resources={'cpu': args.num_cpus, 'gpu': args.num_gpus})
 
-    tune_config = tune.TuneConfig(num_samples=args.num_opt_samples, metric="val_metric", mode="min", reuse_actors=False)
+    tune_config = tune.TuneConfig(num_samples=args.num_opt_samples, metric="val_metric", mode="min")
     run_config = air.RunConfig(storage_path=args.output_dir)
     tuner = tune.Tuner(objective, param_space=search_space, tune_config=tune_config, run_config=run_config)
     
