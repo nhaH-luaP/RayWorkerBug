@@ -5,6 +5,7 @@ num_opt_samples: 50
 num_folds: 3
 num_cpus: 4
 num_gpus: 1
+seed: 1
 
 lr: 0.01
 weight_decay: 0.0005

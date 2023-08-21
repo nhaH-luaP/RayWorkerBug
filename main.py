@@ -31,7 +31,7 @@ def main(args):
         num_cpus=num_cpus, 
         num_gpus=num_gpus, 
         include_dashboard=False,
-        _temp_dir=args.output_dir, 
+        _temp_dir=args.output_dir
         )
 
     search_space = {"param": tune.uniform(0, .1)}
